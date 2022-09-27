@@ -17,7 +17,7 @@
         }
 
         DisplayBoard(board);
-        Console.WriteLine("Good game. Thanks for playing!");
+        Console.WriteLine($"Good game. Thanks for playing!");
     }
 
     /// <summary>Gets a new instance of the board with the numbers 1-9 in place. </summary>
@@ -45,14 +45,18 @@
     /// <returns>True if the game is over</returns>
     static bool IsGameOver(List<string> board)
     {
-        if (IsWinner(board, "x") == true)
-        return true;
-        else if (IsWinner(board, "o") == true)
-        return true;
-        else if(IsTie(board) == true)
-        return true;
-        else
-        return false;
+        if (IsWinner(board, "x") == true){
+            return true;
+        }
+        else if (IsWinner(board, "o") == true){
+            return true;
+        }
+        else if(IsTie(board) == true){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /// <summary>Determines if the provided player has a tic tac toe.</summary>
@@ -62,29 +66,38 @@
     static bool IsWinner(List<string> board, string player)
     {
         //Horizontal Checks
-        if (board[0] == player && board[1] == player && board[2] == player)
+        if ((board[0] == player) && (board[1] == player) && (board[2] == player)){
             return true;
-        else if(board[3] == player && board[4] == player && board[5] == player)
+        }
+        else if((board[3] == player) && (board[4] == player) && (board[5] == player)){
             return true;
-        else if(board[6] == player && board[7] == player && board[8] == player)
+        }
+        else if((board[6] == player) && (board[7] == player) && (board[8] == player)){
             return true;
+        }
 
         //Virtical Checks
-        else if(board[0] == player && board[3] == player && board[6] == player)
+        else if((board[0] == player) && (board[3] == player) && (board[6] == player)){
             return true;
-        else if(board[1] == player && board[4] == player && board[7] == player)
+        }
+        else if((board[1] == player) && (board[4] == player) && (board[7] == player)){
             return true;
-        else if(board[2] == player && board[5] == player && board[8] == player)
+        }
+        else if((board[2] == player) && (board[5] == player) && (board[8] == player)){
             return true;
+        }
 
         //Diagonal Checks
-        else if(board[0] == player && board[4] == player && board[8] == player)
+        else if((board[0] == player) && (board[4] == player) && (board[8] == player)){
             return true;
-        else if(board[2] == player && board[4] == player && board[6] == player)
+        }
+        else if((board[2] == player) && (board[4] == player) && (board[6] == player)){
             return true;
+        }
 
-        else
+        else{
             return false;
+        }
     }
 
     /// <summary>Determines if the board is full with no more moves possible.</summary>
@@ -95,13 +108,16 @@
         int counter = 0;
         foreach (string unit in board)
         {
-            if (unit =="x" || unit == "o")
-            counter += 1;
+            if (unit == "x" || unit == "o"){
+                counter += 1;
+            }
         }
-        if (counter <= 9)
+        if (counter >= 9){
             return true;
-        else
+        }
+        else{
             return false;
+        }
     }
 
     /// <summary>Cycles through the players (from x to o and o to x)</summary>
@@ -109,10 +125,12 @@
     /// <returns>The next players sign (x or o)</returns>
     static string GetNextPlayer(string currentPlayer)
     {
-        if (currentPlayer == "o")
+        if (currentPlayer == "o"){
             return "x";
-        else
+        }
+        else{
             return "o";
+        }
     }
 
     /// <summary>Gets the 1-based spot number associated with the user's choice.</summary>
@@ -135,6 +153,9 @@
     /// <param name="currentPlayer">The current player's sign (x or o)</param>
     static void MakeMove(List<string> board, int choice, string currentPlayer)
     {
-        board[choice] = currentPlayer;
+        int spot = choice-1;
+        board[spot] = currentPlayer;
+        return;
     }
 }
+//contol shift p to create .vscode to run debugger
